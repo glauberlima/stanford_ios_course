@@ -29,6 +29,21 @@
 
 @implementation PhotomaniaAppDelegate
 
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    [self startFlickrFetch];
+    completionHandler(UIBackgroundFetchResultNoData);
+
+    
+    
+}
+
+-(void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler {
+    
+    self.flickrDownloadBackgroundURLSessionCompletionHandler = completionHandler;
+    
+}
+
 
 
 -(NSArray *)flickrPhotoAtURL:(NSURL *)url {
